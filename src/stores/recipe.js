@@ -4,20 +4,24 @@ export const recipe = {
   namespaced : true,
   state() {
     return {
-      recipes : []
+      recipes : [],
+      recipeDetail : {}
     }
   },
   getters : {},
   mutations : {
     setRecipeData(state, payload) {
       state.recipes = payload
+    },
+    setRecipeDetail(state, payload) {
+      state.recipeDetail = payload
     }
   },
   actions : {
     async getRecipeData({commit})  {
       try {
         const {data} = await axios.get(
-          "https://recipe-vue-batch2-default-rtdb.firebaseio.com/recipes.json"
+          "https://vue-js-recipe-project-default-rtdb.firebaseio.com/recipes.json"
         )
         const arr = []
         for (let key in data) {
@@ -28,6 +32,18 @@ export const recipe = {
       } catch (e) {
         console.error(e)
       }
+  },
+    async getDetailRecipe({commit}, payload)  {
+      try {
+        const {data} = await axios.get(
+            `https://vue-js-recipe-project-default-rtdb.firebaseio.com/recipes/${payload}.json`
+        )
+        commit("setRecipeDetail", data)
+
+      } catch (e) {
+        console.error(e)
+      }
   }
+
   }
 }

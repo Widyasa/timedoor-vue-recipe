@@ -21,11 +21,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <main class="">
-    <Navbar />
-    <div class="my-10 container">
+  <main class="container">
       <RecipeList :recipes="recipesList" />
-    </div>
-    <Footer />
   </main>
 </template>
