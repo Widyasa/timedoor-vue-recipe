@@ -1,7 +1,7 @@
 import './assets/main.css'
-// import 'bootstrap/dist/css/bootstrap.css'
-// import 'bootstrap/dist/js/bootstrap.js'
-// import '@popperjs/core'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/js/bootstrap.js'
+import '@popperjs/core'
 
 import {store} from './stores/index.js'
 import { createApp } from 'vue'

@@ -6,6 +6,7 @@ defineProps({
   identity : {type:String, require : true},
   placeholder : {type:String, require : false},
   readonly : {type:String, require : true, default : '0'},
+  isImage : {type:Boolean, require : true, default : false}
 })
 </script>
 
@@ -13,8 +14,9 @@ defineProps({
 <div class="">
   <label :for="identity" class="font-semibold">
     {{titleInput}} <span class="text-red-600">*</span>
+    <slot></slot>
   </label>
-  <input class="bg-transparent py-2 pl-4 pr-2 rounded border w-full border-black" :type="type" :id="identity" :placeholder="placeholder" :value="modelValue" :readonly="readonly === '1'">
+  <input :class="[{'d-none' : isImage}, 'form-control']" class="bg-transparent py-2 pl-4 pr-2 rounded border w-full border-black" :type="type" :id="identity" :placeholder="placeholder" :value="modelValue" :readonly="readonly === '1'">
 </div>
 </template>
 

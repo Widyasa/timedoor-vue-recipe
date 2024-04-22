@@ -3,10 +3,10 @@
 </script>
 
 <template>
-  <div class="container-fluid py-5" style="background-color: #f5f5f5;">
-    <div style="background-color: #ffffff; width: 400px; min-height: 100vh;" class="p-5 m-auto login-form">
-      <div class="text-center">
-        <img src="../../assets/images/Vector.png" alt="Logo" />
+  <div class="container-fluid py-5 h-screen" style="background-color: #f5f5f5;">
+    <div style="background-color: #ffffff; width: 400px;" class="p-5 m-auto">
+      <div class="text-center flex flex-col items-center">
+        <img src="@/assets/logo.svg" alt="Logo" class="w-10 h-10"/>
         <h2 class="mt-4">Log in to your account</h2>
         <p>Welcome back! Please enter your details.</p>
       </div>

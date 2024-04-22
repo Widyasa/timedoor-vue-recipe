@@ -3,6 +3,8 @@ import Recipes from '@/assets/js/recipes.js'
 import RecipeList from '@/components/recipe/RecipeList.vue'
 import { useStore } from 'vuex'
 import { onMounted, ref } from 'vue'
+import Navbar from '@/components/navigation/Navbar.vue'
+import Footer from '@/components/navigation/Footer.vue'
 
 const store = useStore()
 const recipeListStatus = ref(false)
@@ -19,7 +21,11 @@ onMounted(async () => {
 </script>
 
 <template>
-  <main class="container mx-auto px-[6rem]">
-  <RecipeList :recipes="recipesList" />
+  <main class="">
+    <Navbar />
+    <div class="my-10 container">
+      <RecipeList :recipes="recipesList" />
+    </div>
+    <Footer />
   </main>
 </template>

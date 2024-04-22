@@ -6,8 +6,8 @@ import BaseInput from '@/components/ui/BaseInput.vue'
 <template>
     <div class="px-[6rem] py-5 h-screen" style="background-color: #f5f5f5">
       <div style="background-color: #ffffff" class="p-5 m-auto signup-form">
-        <div class="text-center">
-          <img src="../../assets/images/Vector.png" alt="Logo" />
+        <div class="text-center flex flex-col items-center">
+          <img src="@/assets/logo.svg" alt="Logo" class="w-10 h-10"/>
           <h2 class="mt-4">Create your account</h2>
           <p>Enter your details to use all the app features.</p>
         </div>
@@ -31,6 +31,18 @@ import BaseInput from '@/components/ui/BaseInput.vue'
           </div>
           <div class="my-4">
             <base-input type="password" title-input="Confirm Password" id="passwordConfirm" placeholder="masukkan confirm password" value="value"/>
+          </div>
+          <div class="my-4">
+            <base-input type="file" title-input="Profile Image" identity="recipeImage" label="profile photo" isImage="true">
+              <div class="">
+                <div class="border p-1 mt-2 rounded-full">
+                  <img src="https://cdn-icons-png.freepik.com/256/10302/10302971.png?semt=ais_hybrid" class="w-[100px] h-[100px] rounded-full object-cover" alt="">
+                </div>
+                <div class="text-center -translate-y-[24px]">
+                  <i class="fa-solid fa-camera fs-5 p-2 rounded-full bg-white"></i>
+                </div>
+              </div>
+            </base-input>
           </div>
         </form>
         <div class="text-center mt-4">
