@@ -1,4 +1,18 @@
 <script setup>
+import { reactive } from 'vue'
+import BaseInput from '@/components/ui/BaseInput.vue'
+import { store } from '@/stores/index.js'
+import router from '@/router/index.js'
+
+const loginData = reactive( {
+  email : "",
+  password : "",
+  isLogin: true
+})
+const login = async () => {
+  await store.dispatch("auth/getLoginData", loginData)
+  await router.push("/")
+}
 
 </script>
 
@@ -10,9 +24,14 @@
         <h2 class="mt-4">Log in to your account</h2>
         <p>Welcome back! Please enter your details.</p>
       </div>
-      <form>
-        <div class="my-4"><!-- Email --></div>
-        <div class="my-4"><!-- Password --></div>
+      <form @submit.prevent="login">
+        <div class="my-4">
+          <base-input type="email" title-input="Email" id="email" placeholder="masukkan email" v-model="loginData.email"/>
+        </div>
+        <div class="my-4">
+          <base-input v-model="loginData.password" type="password" title-input="Password" id="password" placeholder="masukkan password"/>
+        </div>
+        <button class="btn btn-primary py-3 w-full" type="submit">Submit</button>
       </form>
       <div class="text-center mt-4">
         <p class="fw-semibold">
