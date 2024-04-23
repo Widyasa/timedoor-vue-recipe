@@ -1,14 +1,62 @@
+import Cookies from 'js-cookie'
+import axios from 'axios'
+
 export const auth =   {
   namespaced :true,
   state() {
     return {
-
+        token : null,
+      tokenExpiredDate : null,
+      userLogin : {},
+      isLogin : false
     }
   },
   mutations : {
-
+      setToken(state, {idToken, expiresIn}) {
+        state.token = idToken
+        state.tokenExpiredDate = expiresIn
+        Cookies.set("tokenExpirationDate", expiresIn)
+        Cookies.set("jwt", idToken)
+      },
+      setUserLogin(state, {userData, loginStatus}) {
+        state.userLogin = userData
+        state.isLogin = loginStatus
+      }
   },
   actions : {
-
+      async getRegisterData({commit, dispatch}, payload) {
+        const apiKey = "AIzaSyCQ1Dtdro6V6k8Sgpzyf5UP_IoBY1TiROQ"
+        const authUrl = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key="
+        try {
+          const {data} = await axios.post(authUrl + apiKey, {
+              email : payload.email,
+              password : payload.password,
+              returnSecureToken : true
+          })
+          commit("setToken", {
+            idToken : data.idToken,
+            expiresIn : new Date().getTime() + Number.parseInt(data.expiresIn) * 1000
+          })
+          const newUserData = {
+            userId : data.localId, firstName: payload.firstName,
+            lastName : payload.lastName, username: payload.username,
+            email : payload.email, imageLInk : payload.imageLInk
+          }
+          Cookies.set("UID", newUserData.userId)
+          await dispatch("addNewUser", newUserData)
+        } catch (e) {
+          console.error(e)
+        }
+      },
+      async addNewUser ({commit, state}, payload) {
+        try {
+          const {data} = await axios.post(
+            `https://vue-js-recipe-project-default-rtdb.firebaseio.com/user.json?auth=${state. token}`, payload
+          )
+          commit("setUserLogin", {userData : payload, loginStatus:true})
+        } catch (e) {
+          console.error(e)
+        }
+      }
   }
 }
