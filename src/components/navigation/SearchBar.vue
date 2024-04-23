@@ -4,7 +4,7 @@
 
 <template>
   <div
-    class="border rounded-full p-2"
+    class="border rounded-full p-2 flex"
   >
     <span class="px-2"><i class="fa-solid fa-magnifying-glass"></i></span>
     <input

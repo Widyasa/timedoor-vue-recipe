@@ -2,6 +2,31 @@
 
 import SearchBar from '@/components/navigation/SearchBar.vue'
 import SignupBtn from '@/components/navigation/SignupBtn.vue'
+import ProfileMenu from '@/components/navigation/ProfileMenu.vue'
+import { computed, ref, watch } from 'vue'
+import { useStore } from 'vuex'
+
+const menuComponent = ref("signUpBtn")
+const store = useStore()
+const components = {
+  'SignUpBtn' : SignupBtn,
+  'ProfileMenu' : ProfileMenu
+}
+const getToken = computed(() => {
+  return store.state.auth.token
+})
+if (getToken.value) {
+  menuComponent.value = "SignUpBtn";
+} else {
+  menuComponent.value = "ProfileMenu"
+}
+watch(getToken, (newValue, oldValue) => {
+  if (!newValue) {
+    menuComponent.value = "signUpBtn"
+  } else {
+    menuComponent.value = "ProfileMenu"
+  }
+})
 </script>
 
 <template>
@@ -12,7 +37,7 @@ import SignupBtn from '@/components/navigation/SignupBtn.vue'
   </div>
   <div class="flex gap-3">
    <SearchBar />
-    <SignupBtn />
+    <Component :is="components[menuComponent]" />
   </div>
 </nav>
 </template>

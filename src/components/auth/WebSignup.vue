@@ -61,7 +61,7 @@ const register = async () => {
     confirmPasswordSuccess.value = "none"
   } else {
     await store.dispatch("auth/getRegisterData", signUpData)
-    await router.push("/login")
+    await router.push("/")
   }
 }
 </script>
