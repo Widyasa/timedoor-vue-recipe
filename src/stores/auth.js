@@ -22,11 +22,14 @@ export const auth =   {
         state.userLogin = userData
         state.isLogin = loginStatus
       },
-    // setUserLogout(state){
-    //     state.token = null
-    //     state.userLogin = {}
-    //     state.tokenExpiredDate =
-    // }
+    setUserLogout(state){
+        state.token = null
+        state.userLogin = {}
+        state.tokenExpiredDate = null
+        Cookies.remove("jwt")
+        Cookies.remove("tokenExpirationDate")
+        Cookies.remove("UID")
+    }
   },
   actions : {
       async getRegisterData({commit, dispatch}, payload) {
