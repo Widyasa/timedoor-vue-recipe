@@ -1,14 +1,15 @@
 <script setup>
 import { reactive } from 'vue'
 import BaseInput from '@/components/ui/BaseInput.vue'
-import { store } from '@/stores/index.js'
 import router from '@/router/index.js'
+import { useStore } from 'vuex'
 
 const loginData = reactive( {
   email : "",
   password : "",
   isLogin: true
 })
+const store = useStore()
 const login = async () => {
   await store.dispatch("auth/getLoginData", loginData)
   await router.push("/")

@@ -11,6 +11,11 @@ export const auth =   {
       isLogin : false
     }
   },
+  getters : {
+    getToken(state) {
+      return state.token
+    }
+  },
   mutations : {
       setToken(state, {idToken, expiresIn}) {
         state.token = idToken
@@ -59,7 +64,7 @@ export const auth =   {
       async addNewUser ({commit, state}, payload) {
         try {
           const {data} = await axios.post(
-            `https://vue-js-recipe-project-default-rtdb.firebaseio.com/user.json?auth=${state. token}`, payload
+            `https://vue-js-recipe-project-default-rtdb.firebaseio.com/user.json?auth=${state.token}`, payload
           )
           commit("setUserLogin", {userData : payload, loginStatus:true})
         } catch (e) {
@@ -86,7 +91,7 @@ export const auth =   {
     },
     async getUser({commit}, payload) {
         try{
-          const {data} =  await axios.get(`http://vue-js-recipe-project-default-rtdb.firebaseio.com/user.json`)
+          const {data} =  await axios.get(`https://vue-js-recipe-project-default-rtdb.firebaseio.com/user.json`)
           for (let key in data) {
             if (data[key].userId === payload) {
               Cookies.set("UID", data[key].userId)
@@ -95,9 +100,11 @@ export const auth =   {
               })
             }
           }
+          console.log(data)
         } catch (e) {
           console.error(e)
         }
-    }
+    },
+
   }
 }

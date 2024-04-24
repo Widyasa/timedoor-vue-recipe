@@ -19,18 +19,17 @@ const logout = () => {
     <i class="fa-solid fa-user" style="color: #4c4ddc"></i>
     <ul class="navbar-nav">
       <li class="nav-item dropdown">
-        <a
+        <button
           class="nav-link dropdown-toggle"
-          href="#"
           role="button"
           data-bs-toggle="dropdown"
         >
           My Profile
-        </a>
+        </button>
         <ul class="dropdown-menu">
-          <li class="dropdown-item">My Profile</li>
-          <li class="dropdown-item">Favorited Recipes</li>
-          <li class="dropdown-item">My Recipes</li>
+          <router-link to="/user/personal-info" class="dropdown-item">My Profile</router-link>
+          <router-link to="/user/favorite-recipe" class="dropdown-item">Favorited Recipes</router-link>
+          <router-link to="/user/user-recipe" class="dropdown-item">My Recipes</router-link>
           <li><hr class="dropdown-divider" /></li>
           <li class="dropdown-item" @click="logout">Logout</li>
         </ul>
