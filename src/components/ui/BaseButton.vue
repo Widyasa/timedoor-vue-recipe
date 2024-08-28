@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <button class="px-5 py-4 rounded"><slot></slot></button>
+  <button class="rounded" @click="$emit('clickButton')"><slot></slot></button>
 </template>
 
 <style scoped>

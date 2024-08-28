@@ -8,7 +8,7 @@ import { useStore } from 'vuex'
 
 const menuComponent = ref("signUpBtn")
 const store = useStore()
-const components = {
+const components = {  
   'SignUpBtn' : SignupBtn,
   'ProfileMenu' : ProfileMenu
 }
